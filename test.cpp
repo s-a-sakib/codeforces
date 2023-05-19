@@ -25,27 +25,19 @@ using namespace std;
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
+map < string , int > m;
 void solve(){
-   int n , mn = 9999999999;
-   cin >> n;
-   multiset <int> s;
-
-   for(int i = 0 ; i < n ; i++){
-        int a;
-        cin >> a;
-        s.insert(a);
+   int n;
+   string s , sa = "";
+   cin >> n >> s;
+   for(int i = 0 ; i < n - 1 ; i++){
+        sa.push_back(s[i]);
+        sa.push_back(s[i + 1]);
+        if(m[sa] != 1) m[sa] = 1;
+        sa = "";
    }
-   int temp = 0;
-   for (auto it = s.begin(); it != s.end(); ++it){
-        int temp_p = abs(temp - *it);
-        if(temp_p <= mn) mn = temp_p;
-        temp = *it;
-        if(mn == 0){
-            cout << 0 << endl;
-            return;
-        }
-   }
-   cout << mn << endl;
+   cout << m.size() << endl;
+   m.clear();
 }
         
 int32_t main(){
