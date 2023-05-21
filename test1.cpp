@@ -27,32 +27,22 @@ using namespace std;
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
- 
+int MAX = 999999999999;
 void solve(){
-    string s , prefix , postfix;
-    char cherecter;
-    cin >> s;
-    int q , state = 0;
-    cin >> q;
-    while(q--){
-        int Ti;
-        cin >> Ti;
-        if(Ti == 1) state = 1 - state;
-        else{
-            int Fi;
-            cin >> Fi >> cherecter;
-            if(state == 0){
-                if(Fi == 1) s = cherecter + s;
-                else s.push_back(cherecter);
-            }else{
-                if(Fi == 1) s.push_back(cherecter);
-                else s = cherecter + s;
-            }
+    int n;
+    cin >> n;
+    int a[n];
+    for(int i = 0 ; i < n ; i++) cin >> a[i];
+    sort(a , a + n);
+    if(a[0] % 2){
+        yes; rn;
+    }
+    for(int i = 0 ; i < n ; i++){
+        if(a[i] % 2){
+            no; rn;
         }
     }
-    if(state == 1) reverse(s.begin(),s.end());
-
-    cout << s << endl;
+    yes;
 }
         
 int32_t main(){
@@ -60,7 +50,7 @@ int32_t main(){
     cin.tie(NULL); 
  
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }
