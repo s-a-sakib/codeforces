@@ -1,50 +1,29 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-int main() {
-    int t;
-    cin >> t;
+int min_operations_to_palindrome(string A) {
+    int count = 0;
+    int n = A.length();
 
-    while (t--) {
-        int n, k;
-        cin >> n >> k;
+    for (int i = 0; i < n / 2; i++) {
+        int j = n - i - 1;
 
-        int l = 1, r = n;
-        int ans = -1, cnt;
-
-        while (l <= r) {
-            int mid = (l + r) / 2;
-            cnt = 0;
-            for (int i = 1; i <= n; i++) {
-                int j = i + mid;
-                if (j > n) j -= n;
-                cnt += 1;
-                while (j != i && j < n && j + mid <= i + n - 1) {
-                    j += mid;
-                    cnt += 1;
-                }
-            }
-            if (cnt >= k) {
-                ans = mid;
-                r = mid - 1;
-            } else {
-                l = mid + 1;
-            }
+        if (A[i] != A[j]) {
+            count++;
+            A[i] = '0' + ('1' - A[i]);
         }
-
-        int pairs = 0;
-        for (int i = 1; i <= n; i++) {
-            int j = i + ans;
-            if (j > n) j -= n;
-            pairs += 1;
-            while (j != i && j < n && j + ans <= i + n - 1) {
-                j += ans;
-                pairs += 1;
-            }
-        }
-
-        cout << ans << " " << pairs << endl;
     }
+
+    return count;
+}
+
+int main() {
+    string A;
+    cin >> A;
+
+    int result = min_operations_to_palindrome(A);
+    cout << result << endl;
 
     return 0;
 }

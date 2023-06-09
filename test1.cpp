@@ -27,22 +27,15 @@ using namespace std;
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
-int MAX = 999999999999;
+
 void solve(){
-    int n;
-    cin >> n;
-    int a[n];
-    for(int i = 0 ; i < n ; i++) cin >> a[i];
-    sort(a , a + n);
-    if(a[0] % 2){
-        yes; rn;
-    }
-    for(int i = 0 ; i < n ; i++){
-        if(a[i] % 2){
-            no; rn;
-        }
-    }
-    yes;
+    int n, res = 0;
+    	cin >> n;
+    	for (int i = 1; i <= n; i++) {
+    		int x; cin >> x;
+    		res = __gcd(res, abs(x - i));
+    	}
+    	cout << res << "\n";
 }
         
 int32_t main(){

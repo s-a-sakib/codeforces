@@ -25,19 +25,23 @@ using namespace std;
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
-map < string , int > m;
+
 void solve(){
-   int n;
-   string s , sa = "";
-   cin >> n >> s;
-   for(int i = 0 ; i < n - 1 ; i++){
-        sa.push_back(s[i]);
-        sa.push_back(s[i + 1]);
-        if(m[sa] != 1) m[sa] = 1;
-        sa = "";
-   }
-   cout << m.size() << endl;
-   m.clear();
+    map < char , int > m;
+    int c = 0;
+    string s;
+    cin >> s;
+    for(int i = 0 ; i < s.size() ; i++) m[s[i]]++;
+    for(auto [x , y] : m){
+        if(y >= 2) c++;
+        if(c == 2){
+            yes; 
+            m.clear();
+            rn;
+        }
+    }
+    m.clear();
+    no;
 }
         
 int32_t main(){
