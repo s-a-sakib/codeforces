@@ -25,23 +25,34 @@ using namespace std;
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
-
-void solve(){
-    map < char , int > m;
-    int c = 0;
-    string s;
-    cin >> s;
-    for(int i = 0 ; i < s.size() ; i++) m[s[i]]++;
-    for(auto [x , y] : m){
-        if(y >= 2) c++;
-        if(c == 2){
-            yes; 
-            m.clear();
-            rn;
+int countDifferentChars(string& word1, string& word2) {
+    int count = 0;
+    for (size_t i = 0; i < word1.length(); ++i) {
+        if (word1[i] != word2[i]) {
+            ++count;
         }
     }
-    m.clear();
-    no;
+    return count;
+}
+
+
+void solve(){
+    string wrongWord , closestWord , s;
+    int n;
+    cin >> wrongWord >> n ;
+    int minDifference = wrongWord.length(); // initialize with maximum possible difference
+
+    for (int i = 0 ; i < n ; i++) {
+        cin >> s;
+        if(s.size() == wrongWord.size()){
+            int difference = countDifferentChars(wrongWord, s);
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestWord = s;
+            }
+        }
+    }
+    cout << closestWord << endl;
 }
         
 int32_t main(){
@@ -49,7 +60,7 @@ int32_t main(){
     cin.tie(NULL); 
  
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--){
         solve();
     }

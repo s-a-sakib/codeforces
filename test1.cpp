@@ -29,13 +29,28 @@ int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
 
 void solve(){
-    int n, res = 0;
-    	cin >> n;
-    	for (int i = 1; i <= n; i++) {
-    		int x; cin >> x;
-    		res = __gcd(res, abs(x - i));
-    	}
-    	cout << res << "\n";
+    map < string , int > m;
+    int n;
+    string team1 , team2 , result;
+    cin >> n;
+    for(int i = 0 ; i < n ; i++){
+        cin >> team1 >> team2 >> result;
+        if(result == "W") m[team1]+= 3;
+        else{
+            m[team1]++;
+            m[team2]++;
+        }
+    }
+    vector<pair<int , string>> v;
+    for(auto [x , y] : m) v.push_back(make_pair(y , x));
+
+    sort(v.begin(), v.end(), [](const auto& a, const auto& b) {
+        return a.first > b.first;
+    });
+
+    for (const auto& entry : v) {
+        cout << entry.second << " " << entry.first << endl;
+    }
 }
         
 int32_t main(){
@@ -43,7 +58,7 @@ int32_t main(){
     cin.tie(NULL); 
  
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--){
         solve();
     }

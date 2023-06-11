@@ -27,23 +27,23 @@ int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
  
 void solve(){
-    int n , t , index = -1, mx = -1;
-    cin >> n >> t;
-    int a[n] , b[n];
-    for(int i = 0; i < n; i++){
-        cin >> a[i];
-        a[i] += i;
+    string str1, str2;
+    cin >> str1 >> str2;
+
+    istringstream iss1(str1);
+    istringstream iss2(str2);
+
+    float num1, num2;
+    iss1 >> num1;
+    iss2 >> num2;
+
+    if (num1 < num2) {
+        cout << -1 << std::endl;
+    } else if (num1 > num2) {
+        cout << 1 << std::endl;
+    } else {
+        cout << 0 << std::endl;
     }
-    for(int i = 0 ; i < n; i++){
-        cin >> b[i];
-        if(a[i] <= t){
-            if(b[i] >= mx){
-            mx = b[i];
-            index = i + 1;
-            }
-        }
-    }
-    cout <<((index == -1) ? -1 : index) << endl;
 }
         
 int32_t main(){

@@ -1,29 +1,36 @@
 #include <iostream>
 #include <string>
-using namespace std;
+#include <vector>
 
-int min_operations_to_palindrome(string A) {
+int countDifferentChars(const std::string& word1, const std::string& word2) {
     int count = 0;
-    int n = A.length();
-
-    for (int i = 0; i < n / 2; i++) {
-        int j = n - i - 1;
-
-        if (A[i] != A[j]) {
-            count++;
-            A[i] = '0' + ('1' - A[i]);
+    for (size_t i = 0; i < word1.length(); ++i) {
+        if (word1[i] != word2[i]) {
+            ++count;
         }
     }
-
     return count;
 }
 
-int main() {
-    string A;
-    cin >> A;
+std::string findClosestWord(const std::string& misspelledWord, const std::vector<std::string>& dictionary) {
+    
+    return closestWord;
+}
 
-    int result = min_operations_to_palindrome(A);
-    cout << result << endl;
+int main() {
+    std::string misspelledWord;
+    std::cin >> misspelledWord;
+
+    int n;
+    std::cin >> n;
+
+    std::vector<std::string> dictionary(n);
+    for (int i = 0; i < n; ++i) {
+        std::cin >> dictionary[i];
+    }
+
+    std::string closestWord = findClosestWord(misspelledWord, dictionary);
+    std::cout << closestWord << std::endl;
 
     return 0;
 }
