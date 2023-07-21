@@ -20,6 +20,7 @@
 #define all(X) (X).begin(), (X).end()
 #define np cout << -1 << endl
 #define rn return
+#define cout(a) cout << a << endl
 using namespace std;
  
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
@@ -27,23 +28,16 @@ int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
  
 void solve(){
-    string str1, str2;
-    cin >> str1 >> str2;
+   string s = "";
+   string grid[8];
+   for(int i = 0 ; i < 8 ; i++) cin >> grid[i] ;
 
-    istringstream iss1(str1);
-    istringstream iss2(str2);
-
-    float num1, num2;
-    iss1 >> num1;
-    iss2 >> num2;
-
-    if (num1 < num2) {
-        cout << -1 << std::endl;
-    } else if (num1 > num2) {
-        cout << 1 << std::endl;
-    } else {
-        cout << 0 << std::endl;
-    }
+   for(int i = 0 ; i < 8 ; i++){
+        for(int j = 0 ; j < 8 ; j++){
+            if(grid[i][j] != '.') s.push_back(grid[i][j]);
+        }
+   }
+   cout << s << endl;
 }
         
 int32_t main(){

@@ -1,36 +1,41 @@
-#include <iostream>
-#include <string>
-#include <vector>
+#include<bits/stdc++.h>
+#define int long long int
+#define yes cout << "Yes" << endl
+#define no cout << "No" << endl
+#define pb push_back
+#define all(X) (X).begin(), (X).end()
+#define np cout << -1 << endl
+#define rn return
+#define cout(a) cout << a << endl
 
-int countDifferentChars(const std::string& word1, const std::string& word2) {
-    int count = 0;
-    for (size_t i = 0; i < word1.length(); ++i) {
-        if (word1[i] != word2[i]) {
-            ++count;
-        }
+using namespace std;
+
+
+void solve(){
+    int n , k , x = -1;
+    cin >> n >> k;
+    int v[n];
+    for(int i = 0 ; i < n ; i++) cin >> v[i];
+
+    if(n == 1){
+            cout(0);
+            rn;
     }
-    return count;
-}
-
-std::string findClosestWord(const std::string& misspelledWord, const std::vector<std::string>& dictionary) {
-    
-    return closestWord;
-}
-
-int main() {
-    std::string misspelledWord;
-    std::cin >> misspelledWord;
-
-    int n;
-    std::cin >> n;
-
-    std::vector<std::string> dictionary(n);
-    for (int i = 0; i < n; ++i) {
-        std::cin >> dictionary[i];
+    sort(v , v + n);
+    for(int i = 1 ; i < n ; i++){
+        if(v[i - 1] - v[i] > k) x = i;
     }
-
-    std::string closestWord = findClosestWord(misspelledWord, dictionary);
-    std::cout << closestWord << std::endl;
-
+    cout(x - 1);
+}
+        
+int32_t main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); 
+ 
+    int t = 1;
+    cin >> t;
+    while(t--){
+        solve();
+    }
     return 0;
 }

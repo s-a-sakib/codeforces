@@ -19,50 +19,49 @@
 #define pb push_back
 #define all(X) (X).begin(), (X).end()
 #define np cout << -1 << endl
+#define cout(a) cout << a << endl
 #define rn return
 using namespace std;
  
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
-int countDifferentChars(string& word1, string& word2) {
-    int count = 0;
-    for (size_t i = 0; i < word1.length(); ++i) {
-        if (word1[i] != word2[i]) {
-            ++count;
-        }
+string printBinary(int number){
+    std::bitset<CHAR_BIT * sizeof(number)> binary(number);
+    std::string binaryString = binary.to_string();
+    
+    size_t firstNonZero = binaryString.find_first_not_of('0');
+    if (firstNonZero != std::string::npos) {
+        binaryString = binaryString.substr(firstNonZero);
+    } else {
+        binaryString = "0";  // If the number is 0, set binaryString to "0"
     }
-    return count;
+    return binaryString;
 }
-
-
 void solve(){
-    string wrongWord , closestWord , s;
-    int n;
-    cin >> wrongWord >> n ;
-    int minDifference = wrongWord.length(); // initialize with maximum possible difference
-
-    for (int i = 0 ; i < n ; i++) {
-        cin >> s;
-        if(s.size() == wrongWord.size()){
-            int difference = countDifferentChars(wrongWord, s);
-            if (difference < minDifference) {
-                minDifference = difference;
-                closestWord = s;
-            }
-        }
+    int a , b , c;
+    cin >> a >> b >> c;
+    if(a + b >= 10){
+        yes;
+        rn;
     }
-    cout << closestWord << endl;
+    if(a + c >= 10){
+        yes;
+        rn;
+    }
+    if(b + c >= 10){
+        yes;
+        rn;
+    }
+    no; rn;
 }
         
 int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); 
  
-    int t = 1;
-    //cin >> t;
-    while(t--){
-        solve();
-    }
+    int cases = 1;
+    cin >> cases;
+    while(cases--) solve();
     return 0;
 }

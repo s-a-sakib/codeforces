@@ -22,6 +22,7 @@
 #define all(X) (X).begin(), (X).end()
 #define np cout << -1 << endl
 #define rn return
+#define cout(a) cout << a << endl
 using namespace std;
  
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
@@ -29,36 +30,24 @@ int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 
 
 void solve(){
-    map < string , int > m;
-    int n;
-    string team1 , team2 , result;
+    int n , a , b , pos = -1 , pw = -1;
     cin >> n;
-    for(int i = 0 ; i < n ; i++){
-        cin >> team1 >> team2 >> result;
-        if(result == "W") m[team1]+= 3;
-        else{
-            m[team1]++;
-            m[team2]++;
+    for(int i = 1 ; i <= n ; i++){
+        cin >> a >> b;
+        if(a <= 10 and pw < b){
+            pos = i;
+            pw = b;
         }
     }
-    vector<pair<int , string>> v;
-    for(auto [x , y] : m) v.push_back(make_pair(y , x));
-
-    sort(v.begin(), v.end(), [](const auto& a, const auto& b) {
-        return a.first > b.first;
-    });
-
-    for (const auto& entry : v) {
-        cout << entry.second << " " << entry.first << endl;
-    }
+    cout << pos << endl;
 }
         
 int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); 
  
-    int t = 1;
-    //cin >> t;
+    int t;
+    cin >> t;
     while(t--){
         solve();
     }
