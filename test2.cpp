@@ -14,8 +14,8 @@
  
 #include<bits/stdc++.h>
 #define int long long int
-#define yes cout << "Yes" << endl
-#define no cout << "No" << endl
+#define yes cout << "YES" << endl
+#define no cout << "NO" << endl
 #define pb push_back
 #define all(X) (X).begin(), (X).end()
 #define np cout << -1 << endl
@@ -42,14 +42,21 @@ binaryString = "0";}return binaryString;}
 
 
 void solve(){
-     int n , x , i;
-     cin >> n >> x;
-     int a[n];
-     for(i = 0; i < n; i++){
-          cin >> a[i];
-     }
-     sort(a , a + n);
-     
+    int n, m , c = 0;
+    cin >> n >> m;
+    string s[n] , vika = "vika";
+    for(int i=0; i < n; i++){
+        cin >> s[i];
+    }
+    for(int i = 0 ; i < m; i++){
+        for(int j = 0; j < n; j++){
+            if(s[j][i] == vika[c]){
+                c++;
+                break;
+            }
+        }
+    }
+    (c == 4) ? yes : no;
 }
 
         

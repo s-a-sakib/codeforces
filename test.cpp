@@ -26,7 +26,7 @@ using namespace std;
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 int mx = INT_MIN;
-int mn = INT_MAX;
+//int mn = INT_MAX;
 
 /*binPow , findPrimeFactors , printBinary*/
 //  ==============================================================================================
@@ -40,8 +40,16 @@ if (firstNonZero != std::string::npos) {binaryString = binaryString.substr(first
 binaryString = "0";}return binaryString;}
 //  ==============================================================================================
 
+bool okay(int n ,int m){
+    if(n == m) {return true;}
+    else if(n % 3 != 0) {return false;}
+    else {return (okay(n/3,m) || okay((2 * n) / 3 , m));}
+}
+
 void solve(){
-    
+    int n, m;
+    cin >> n >> m;
+    okay(n , m)? yes : no;
 }
         
 int32_t main(){

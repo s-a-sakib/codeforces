@@ -6,13 +6,13 @@ using namespace std;
 
 void ena()
 {
-    
+    cout << 0 % 5 << endl;
 }
 
 int main()
 {
-    int t;
-    cin >> t;
+    int t = 1;
+    //cin >> t;
     while(t--)
     {
         ena();
@@ -20,4 +20,3 @@ int main()
 
     return 0;
 }
-.

@@ -43,14 +43,15 @@ binaryString = "0";}return binaryString;}
 //  ==============================================================================================
 
 void solve(){
-    int n, k , ans = 0 , c = 0;
+    int n , k;
     cin >> n >> k;
-    int array[n];
-    for(int i = 0; i < n;i++) cin >> array[i];
-    sort(array , array + n);
-
-    for(auto i : array) cout << i << " ";
-    cout  << endl;
+    int a[n + 1];
+    for(int i = 1; i <= n; i++) cin >> a[i];
+    sort(a + 1, a + n + 1);
+    for(int i = 1; i <= n; i++) a[i] += a[i-1];
+    int ans = 0;
+    for(int i = 0; i <= k; i++) ans = max( ans, a[n-k+i] - a[2*i]);
+    cout << ans << '\n';
 }
         
 int32_t main(){
