@@ -43,15 +43,28 @@ binaryString = "0";}return binaryString;}
 //  ==============================================================================================
 
 void solve(){
-    int n , k;
-    cin >> n >> k;
-    int a[n + 1];
-    for(int i = 1; i <= n; i++) cin >> a[i];
-    sort(a + 1, a + n + 1);
-    for(int i = 1; i <= n; i++) a[i] += a[i-1];
-    int ans = 0;
-    for(int i = 0; i <= k; i++) ans = max( ans, a[n-k+i] - a[2*i]);
-    cout << ans << '\n';
+    int n , x , y , ans = 0 , run;
+    cin >> n >> x >> y;
+    int a = n / x;
+    int b = n / y;
+    bool flag = (x % y == 0 or y % x == 0)? true : false;
+
+    if(flag) run = min(a , b);
+    else run = n / ((x * y) / __gcd(x , y));
+
+    //cout << a << " " << b << " " << run << endl;
+    if(a > run){
+        //Sum 1 to n
+        int sumN = (n * (n + 1)) / 2;
+        //Sum 1 to n - abs(a - run)
+        int sumN2 = ((n - abs(a - run)) * (n - abs(a - run) + 1)) / 2;
+        ans = sumN - sumN2;
+        //cout << ans << endl;
+    }
+    if(b > run){
+        ans = ans - (abs(b - run)*(abs(b - run) + 1)) / 2;
+    }
+    cout << ans << endl;
 }
         
 int32_t main(){
