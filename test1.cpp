@@ -15,9 +15,9 @@
 */
  
 #include<bits/stdc++.h>
-#define int long long int
-#define yes cout << "Yes" << endl
-#define no cout << "No" << endl
+#define ll long long int
+#define yes cout << "YES" << endl
+#define no cout << "NO" << endl
 #define pb push_back
 #define all(X) (X).begin(), (X).end()
 #define np cout << -1 << endl
@@ -43,29 +43,30 @@ binaryString = "0";}return binaryString;}
 //  ==============================================================================================
 
 void solve(){
-    int n , x , y , ans = 0 , run;
-    cin >> n >> x >> y;
-    int a = n / x;
-    int b = n / y;
-    bool flag = (x % y == 0 or y % x == 0)? true : false;
-
-    if(flag) run = min(a , b);
-    else run = n / ((x * y) / __gcd(x , y));
-
-    //cout << a << " " << b << " " << run << endl;
-    if(a > run){
-        //Sum 1 to n
-        int sumN = (n * (n + 1)) / 2;
-        //Sum 1 to n - abs(a - run)
-        int sumN2 = ((n - abs(a - run)) * (n - abs(a - run) + 1)) / 2;
-        ans = sumN - sumN2;
-        //cout << ans << endl;
+	int n , ans = 0;
+    cin >> n;
+    int a[2 * n];
+    for(int i = 0; i < 2 * n; i++){
+        cin >> a[i];
     }
-    if(b > run){
-        ans = ans - (abs(b - run)*(abs(b - run) + 1)) / 2;
+    sort(a , a + 2*n);
+    int arr1[n] , arr2[n];
+    arr1[0] = a[0];
+    arr2[0] = a[n];
+    for(int i = 1 ; i <= n - 1; i++){
+        arr1[i] = a[i];
+        ans += abs(a[i] - a[i - 1]);
+    }
+    
+    for(int i = n + 1 ; i < 2* n; i++){
+        arr2[i - n] = a[i];
+        ans += abs(a[i] - a[i - 1]);
     }
     cout << ans << endl;
-}
+    for(int i = 0 ; i < n; i++)
+        cout << arr1[i] <<" "<< arr2[n - 1 -i]<<  endl;
+
+}  
         
 int32_t main(){
     ios_base::sync_with_stdio(false);
