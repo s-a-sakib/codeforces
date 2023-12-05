@@ -43,9 +43,18 @@ binaryString = "0";}return binaryString;}
 //  ==============================================================================================
 
 void solve(){
-	int a,b;
-    cin >> a >> b;
-    cout << 2 << "\n" << a-1 << ' ' << 1 << "\n" << a << ' ' << b << "\n";
+	string s;
+    cin >> s;
+    for(int i = 1 ; i < 9 ; i++){
+        if(i != (s[1] - '0'))
+            cout<< s[0] << i << endl;
+    }
+    string x = "abcdefgh";
+    for(int i = 0; i < 8 ; i++){
+        if(x[i] != s[0]){
+            cout << x[i] << s[1] << endl;
+        }
+    }
 }  
         
 int32_t main(){

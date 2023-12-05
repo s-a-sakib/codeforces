@@ -42,22 +42,28 @@ binaryString = "0";}return binaryString;}
 
 
 void solve(){
-    int a = 0 , b = 0 , c = 0 , d = 0;
-    int x ;
-    int n , m;
-    cin >> n;
-    for(int i = 0; i < n; i++){
-        cin >> x;
-        if(x % 2 == 0) a++;
-        else c++;
+    string s, ans;
+    cin  >> s;
+    int low = 0;
+    int high = 0;
+    for(int i = s.length() - 1; i >= 0; i--){
+        if(s[i] == 'b') low++;
+        if(s[i] == 'B') high++;
+
+        if(s[i] >= 'a' and s[i] <= 'z' and low == 0 and s[i] != 'b'){
+            ans.push_back(s[i]);
+        }else if(s[i] >= 'a' and s[i] <= 'z' and low > 0 and s[i] != 'b'){
+            low--;
+        }
+
+        if(s[i] >= 'A' and s[i] <= 'Z' and high == 0 and s[i] != 'B'){
+            ans.push_back(s[i]);
+        }else if(s[i] >= 'A' and s[i] <= 'Z' and high > 0 and s[i] != 'B'){
+            high--;
+        }
     }
-    cin >> m;
-    for(int i = 0; i < m; i++){
-        cin >> x;
-        if(x % 2 == 0) b++;
-        else d++;
-    }
-    cout << a * b + c * d << endl;
+    reverse(ans.begin(), ans.end());
+    cout << ans << endl;
 }
 
         
