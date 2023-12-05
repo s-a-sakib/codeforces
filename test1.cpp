@@ -43,29 +43,9 @@ binaryString = "0";}return binaryString;}
 //  ==============================================================================================
 
 void solve(){
-	int n , ans = 0;
-    cin >> n;
-    int a[2 * n];
-    for(int i = 0; i < 2 * n; i++){
-        cin >> a[i];
-    }
-    sort(a , a + 2*n);
-    int arr1[n] , arr2[n];
-    arr1[0] = a[0];
-    arr2[0] = a[n];
-    for(int i = 1 ; i <= n - 1; i++){
-        arr1[i] = a[i];
-        ans += abs(a[i] - a[i - 1]);
-    }
-    
-    for(int i = n + 1 ; i < 2* n; i++){
-        arr2[i - n] = a[i];
-        ans += abs(a[i] - a[i - 1]);
-    }
-    cout << ans << endl;
-    for(int i = 0 ; i < n; i++)
-        cout << arr1[i] <<" "<< arr2[n - 1 -i]<<  endl;
-
+	int a,b;
+    cin >> a >> b;
+    cout << 2 << "\n" << a-1 << ' ' << 1 << "\n" << a << ' ' << b << "\n";
 }  
         
 int32_t main(){

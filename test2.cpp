@@ -42,21 +42,22 @@ binaryString = "0";}return binaryString;}
 
 
 void solve(){
-    int n, m , c = 0;
-    cin >> n >> m;
-    string s[n] , vika = "vika";
-    for(int i=0; i < n; i++){
-        cin >> s[i];
+    int a = 0 , b = 0 , c = 0 , d = 0;
+    int x ;
+    int n , m;
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        cin >> x;
+        if(x % 2 == 0) a++;
+        else c++;
     }
-    for(int i = 0 ; i < m; i++){
-        for(int j = 0; j < n; j++){
-            if(s[j][i] == vika[c]){
-                c++;
-                break;
-            }
-        }
+    cin >> m;
+    for(int i = 0; i < m; i++){
+        cin >> x;
+        if(x % 2 == 0) b++;
+        else d++;
     }
-    (c == 4) ? yes : no;
+    cout << a * b + c * d << endl;
 }
 
         
