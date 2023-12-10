@@ -40,30 +40,28 @@ if (firstNonZero != std::string::npos) {binaryString = binaryString.substr(first
 binaryString = "0";}return binaryString;}
 //  ==============================================================================================
 
-
+int xd[4] = {-1, 1, -1, 1}, yd[4] = {-1, -1, 1, 1};
 void solve(){
-    string s, ans;
-    cin  >> s;
-    int low = 0;
-    int high = 0;
-    for(int i = s.length() - 1; i >= 0; i--){
-        if(s[i] == 'b') low++;
-        if(s[i] == 'B') high++;
+    int a , b;
+    int Xk , Yk , Xq , Yq;
+    cin >> a >> b >> Xk >> Yk >> Xq >> Yq;
+    vector < pair<int,int> > v1 , v2;
+    for(int i = 0; i < 4; i++){
+        v1.push_back({Xk + xd[i]*a , Yk + yd[i]*b});
+        v2.push_back({Xq + xd[i]*a , Yq + yd[i]*b});
+        v1.push_back({Xk + xd[i]*b , Yk + yd[i]*a});
+        v2.push_back({Xq + xd[i]*b , Yq + yd[i]*a});
+    }
+    std::set<std::pair<int, int>> set1(v1.begin(), v1.end());
+    std::set<std::pair<int, int>> set2(v2.begin(), v2.end());
 
-        if(s[i] >= 'a' and s[i] <= 'z' and low == 0 and s[i] != 'b'){
-            ans.push_back(s[i]);
-        }else if(s[i] >= 'a' and s[i] <= 'z' and low > 0 and s[i] != 'b'){
-            low--;
-        }
-
-        if(s[i] >= 'A' and s[i] <= 'Z' and high == 0 and s[i] != 'B'){
-            ans.push_back(s[i]);
-        }else if(s[i] >= 'A' and s[i] <= 'Z' and high > 0 and s[i] != 'B'){
-            high--;
+    int ans = 0;
+    for(auto pt1 : set1){
+        for(auto pt2 : set2){
+            if(pt1 == pt2) ans
         }
     }
-    reverse(ans.begin(), ans.end());
-    cout << ans << endl;
+    std::cout << ans << std::endl;
 }
 
         
