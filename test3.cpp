@@ -6,13 +6,14 @@ using namespace std;
 
 void sakib()
 {
-    
+    char a = '3';
+    cout << a - '0' << endl;
 }
 
 int main()
 {
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--)
     {
         sakib();

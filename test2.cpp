@@ -41,41 +41,31 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 &b){return (a.second < b.second);}
 //  ==============================================================================================
 
-int binarySearchPosition(int a[], int data , int size){
-    int low = 0 , high = size - 1;
-    int mid = (low + high) / 2;
-    while(low < high){
-        if(a[mid] == data) break;
-        else if(a[mid] > data) high = mid - 1;
-        else low = mid + 1;
 
-        mid = (high + low)/2;
-    }
-    return mid;
-}
 void solve(){
-    int n, O = 0 , L = 0 , Al = 0 , Ao = 0;
-    string s;
-    cin >> n >> s;
-    for(int i = 0; i < n; i++){
-        if(s[i] == 'O') O++;
+    string s , s1;
+    cin >> s;
+    int n = s.size();
+    int zero = 0 , one = 0;
+    for(int i = 0 ; i < n ; i++){
+        if(s[i] == '0') zero++;
+        else one++;
     }
-    L = n - O;
-    for(int i = 0; i < n - 1; i++){
-        if(s[i] == 'O'){
-            Ao++;
-            O--;
+    for(int i = 0; i < n ; i++){
+        if(s[i] == '1'){
+            if(zero > 0){
+                s1.push_back('0');
+                zero--;
+            }else break;
         }else{
-            Al++;
-            L--;
-        }
-        if(Ao != O and Al != L){
-            //cout << "Ao = " << Ao << "  O = " << O << "  L = " << L << "  Al = " << Al << endl;
-            cout << i + 1 << endl;
-            rn;
+            if(one > 0){
+                s1.push_back('1');
+                one--;
+            }else break;
         }
     }
-    cout << -1 << endl;
+    int m = s1.size();
+    cout << n - m << endl;
 }
 
         
@@ -84,7 +74,7 @@ int32_t main(){
     cin.tie(NULL); 
  
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

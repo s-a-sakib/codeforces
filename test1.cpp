@@ -43,33 +43,48 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 &b){return (a.second < b.second);}
 //  ==============================================================================================
 
-void solve(){
-	map < int , vector<int >> m;
-    int n;
-    cin >> n;
-    for(int i = 1; i < n; i++){
-        int a , b;
-        cin >> a >>  b;
-        m[a].push_back(b);
-        m[b].push_back(a);
+
+void solve() {
+    int Q;
+    cin >> Q;
+    int a , b;
+    int arr[62] = {0};
+    while(Q--){
+        cin >> a >> b;
+        if(a == 1){
+            arr[b]++;
+            int x = b;
+            if(arr[x] == 3){
+                while(arr[x] == 3){
+                    arr[x] = 1;
+                    arr[x + 1]++;
+                    x += 1;
+                }
+            }
+        }else{
+            bool flag = false;
+            bitset < 62 > bit(b);
+            for(int i = 0; i < 62; i++){
+                if(bit[i] == 1 and arr[i] == 0){
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag) no;
+            else yes;
+        }
     }
-    int cnt = 0;
-    for(auto [x , y] : m){
-        cout << x << " <==> ";
-        for(auto it : y) cout << it << "  ";
-        cout << endl;
-    }
-    //cout << (cnt + 1) / 2 << endl;
-}  
-        
-int32_t main(){
+}
+
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); 
  
     int t = 1;
-    cin >> t;
-    while(t--){
+    //cin >> t;
+    while (t--) {
         solve();
     }
+
     return 0;
 }
