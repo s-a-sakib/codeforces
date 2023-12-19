@@ -44,36 +44,34 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 //  ==============================================================================================
 
 
-void solve() {
-    int Q;
-    cin >> Q;
-    int a , b;
-    int arr[62] = {0};
-    while(Q--){
-        cin >> a >> b;
-        if(a == 1){
-            arr[b]++;
-            int x = b;
-            if(arr[x] == 3){
-                while(arr[x] == 3){
-                    arr[x] = 1;
-                    arr[x + 1]++;
-                    x += 1;
-                }
+void solve(){
+    int n, k;
+    cin >> n >> k;
+    int a[n] , b[n] , ans = 0;
+    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < n; i++) cin >> b[i];
+
+    priority_queue<int > pq;
+    int sum = 0;
+    sum += a[0];
+    pq.push(b[0]);
+            
+    for(int i = 1; i < k; i += 1){
+        if(i < n){
+            int value = pq.top();
+            if(value > a[i]) sum += value;
+            else{ 
+                sum += a[i];
+                pq.push(b[i]);
             }
         }else{
-            bool flag = false;
-            bitset < 62 > bit(b);
-            for(int i = 0; i < 62; i++){
-                if(bit[i] == 1 and arr[i] == 0){
-                    flag = true;
-                    break;
-                }
-            }
-            if(flag) no;
-            else yes;
+            sum += pq.top();
         }
+        cout << i << ' ' << sum << '\n';
     }
+
+    cout << sum << '\n';
+
 }
 
 int main() {
@@ -81,7 +79,7 @@ int main() {
     cin.tie(NULL); 
  
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while (t--) {
         solve();
     }

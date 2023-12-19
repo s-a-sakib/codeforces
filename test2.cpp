@@ -25,7 +25,7 @@ using namespace std;
  
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
-// int mx = INT_MIN;
+int mx = INT_MIN;
 // int mn = INT_MAX;
 
 /*binPow , findPrimeFactors , printBinary , sortbysec*/
@@ -43,29 +43,57 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 
 
 void solve(){
-    string s , s1;
-    cin >> s;
-    int n = s.size();
-    int zero = 0 , one = 0;
-    for(int i = 0 ; i < n ; i++){
-        if(s[i] == '0') zero++;
-        else one++;
+    int n;
+    cin >> n;
+    vector < pair < int , int >> a , b , c;
+    for(int i = 0; i < n; i++){
+        int x;
+        cin >> x;
+        a.push_back({x,i});
     }
-    for(int i = 0; i < n ; i++){
-        if(s[i] == '1'){
-            if(zero > 0){
-                s1.push_back('0');
-                zero--;
-            }else break;
-        }else{
-            if(one > 0){
-                s1.push_back('1');
-                one--;
-            }else break;
+    for(int i = 0; i < n; i++){
+        int x;
+        cin >> x;
+        b.push_back({x,i});
+    }
+    for(int i = 0; i < n; i++){
+        int x;
+        cin >> x;
+        c.push_back({x,i});
+    }
+    sort(all(a));
+    sort(all(b));
+    sort(all(c));
+    //cout << endl;
+    //for(int i = n - 1; i >= n - 3; i--) cout << a[i].first << " "; cout << endl;
+    //for(int i = n - 1; i >= n - 3; i--) cout << b[i].first << " "; cout << endl;
+    //for(int i = n - 1; i >= n - 3; i--) cout << c[i].first << " "; cout << endl;
+    //cout << endl;
+
+    int ans = 0;
+    for(int i = n - 1; i >= n - 3; i--){
+        int pos1 = a[i].second;
+        int sum = a[i].first;
+
+        for(int j = n - 1; j >= n - 3; j--){
+            int pos2 = b[j].second;
+            if(pos1 == pos2) continue;
+            sum += b[j].first;
+
+            for(int k = n - 1; k >= n - 3; k--){
+                int pos3 = c[k].second;
+                if(pos3 == pos1 or pos3 == pos2) continue;
+                
+                sum += c[k].first;
+                ans = max(sum, ans);
+                //cout << sum <<" " << a[i].first << " " << b[j].first << " " << c[k].first << endl;
+                sum -= c[k].first;
+            }
+            sum -= b[j].first;
         }
     }
-    int m = s1.size();
-    cout << n - m << endl;
+    //cout << endl;
+    cout << ans << endl;
 }
 
         
