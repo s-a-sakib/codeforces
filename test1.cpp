@@ -43,36 +43,29 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 &b){return (a.second < b.second);}
 //  ==============================================================================================
 
-
 void solve(){
-    int n, k;
-    cin >> n >> k;
-    int a[n] , b[n] , ans = 0;
-    for(int i = 0; i < n; i++) cin >> a[i];
-    for(int i = 0; i < n; i++) cin >> b[i];
+    int n;
+        cin >> n;
+        bool left = false , right = false , up = false , down = false;
+        int a , b;
+        while(n--){
+            cin >> a >> b;
+            if(a > 0) right = true;
+            else if(a < 0) left = true;
 
-    priority_queue<int > pq;
-    int sum = 0;
-    sum += a[0];
-    pq.push(b[0]);
-            
-    for(int i = 1; i < k; i += 1){
-        if(i < n){
-            int value = pq.top();
-            if(value > a[i]) sum += value;
-            else{ 
-                sum += a[i];
-                pq.push(b[i]);
-            }
-        }else{
-            sum += pq.top();
+            if(b > 0) up = true;
+            else if(b < 0) down = true;
         }
-        cout << i << ' ' << sum << '\n';
-    }
-
-    cout << sum << '\n';
-
+        int ans = 0;
+        if(left) ans++;
+        if(right) ans++;
+        if(up) ans++;
+        if(down) ans++;
+        
+        if(ans < 4) yes;
+        else no;
 }
+
 
 int main() {
     ios_base::sync_with_stdio(false);

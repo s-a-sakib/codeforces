@@ -40,60 +40,36 @@ if (firstNonZero != std::string::npos) {binaryString = binaryString.substr(first
 binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,const pair<int,int> 
 &b){return (a.second < b.second);}
 //  ==============================================================================================
+bool compareDescending(int a, int b) {
+    return a > b;
+}
 
+int binarySearch(int B[], int n, int target) {
+    int left = 0;
+    int right = n - 1;
+    int result = -1;
 
-void solve(){
-    int n;
-    cin >> n;
-    vector < pair < int , int >> a , b , c;
-    for(int i = 0; i < n; i++){
-        int x;
-        cin >> x;
-        a.push_back({x,i});
-    }
-    for(int i = 0; i < n; i++){
-        int x;
-        cin >> x;
-        b.push_back({x,i});
-    }
-    for(int i = 0; i < n; i++){
-        int x;
-        cin >> x;
-        c.push_back({x,i});
-    }
-    sort(all(a));
-    sort(all(b));
-    sort(all(c));
-    //cout << endl;
-    //for(int i = n - 1; i >= n - 3; i--) cout << a[i].first << " "; cout << endl;
-    //for(int i = n - 1; i >= n - 3; i--) cout << b[i].first << " "; cout << endl;
-    //for(int i = n - 1; i >= n - 3; i--) cout << c[i].first << " "; cout << endl;
-    //cout << endl;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
 
-    int ans = 0;
-    for(int i = n - 1; i >= n - 3; i--){
-        int pos1 = a[i].second;
-        int sum = a[i].first;
-
-        for(int j = n - 1; j >= n - 3; j--){
-            int pos2 = b[j].second;
-            if(pos1 == pos2) continue;
-            sum += b[j].first;
-
-            for(int k = n - 1; k >= n - 3; k--){
-                int pos3 = c[k].second;
-                if(pos3 == pos1 or pos3 == pos2) continue;
-                
-                sum += c[k].first;
-                ans = max(sum, ans);
-                //cout << sum <<" " << a[i].first << " " << b[j].first << " " << c[k].first << endl;
-                sum -= c[k].first;
-            }
-            sum -= b[j].first;
+        if (B[mid] > target) {
+            result = B[mid];
+            right = mid - 1;
+        } else {
+            left = mid + 1;
         }
     }
-    //cout << endl;
-    cout << ans << endl;
+    return result - target;
+}
+void solve() {
+    int n;
+    cin >> n;
+    int a[n] , b[n] , c[n];
+    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < n; i++) cout >> b[i];
+    for(int i = 0; i < n; i++) cout >> c[i];
+
+    
 }
 
         
