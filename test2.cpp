@@ -40,39 +40,30 @@ if (firstNonZero != std::string::npos) {binaryString = binaryString.substr(first
 binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,const pair<int,int> 
 &b){return (a.second < b.second);}
 //  ==============================================================================================
-bool compareDescending(int a, int b) {
-    return a > b;
-}
 
-int binarySearch(int B[], int n, int target) {
-    int left = 0;
-    int right = n - 1;
-    int result = -1;
-
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-
-        if (B[mid] > target) {
-            result = B[mid];
-            right = mid - 1;
-        } else {
-            left = mid + 1;
-        }
-    }
-    return result - target;
-}
-void solve() {
+void solve(){
     int n;
     cin >> n;
-    int a[n] , b[n] , c[n];
-    for(int i = 0; i < n; i++) cin >> a[i];
-    for(int i = 0; i < n; i++) cout >> b[i];
-    for(int i = 0; i < n; i++) cout >> c[i];
-
-    
+    map < int , int > m;
+    for(int i = 1; i <= n; i++){
+        int a;
+        cin >> a;
+        m[i] = a;
+    }
+    for(int i = 1; i <= n; i++){
+        int cnt = 1;
+        int temp = i;
+        int next = m[temp];
+        while(next != i){
+            temp = next;
+            next = m[temp];
+            cnt++;
+        }
+        cout << cnt << " ";
+    }
+    cout << endl;
 }
 
-        
 int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); 

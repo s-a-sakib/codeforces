@@ -1,5 +1,4 @@
 /*
-
  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄    ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  
 ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ 
 ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌ ▐░▌  ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌
@@ -11,11 +10,10 @@
  ▄▄▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌▐░▌ ▐░▌  ▄▄▄▄█░█▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌
 ▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ 
  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀  
-                                                            
 */
  
 #include<bits/stdc++.h>
-#define ll long long int
+#define int long long int
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
 #define pb push_back
@@ -28,7 +26,7 @@ using namespace std;
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 int mx = INT_MIN;
-int mn = INT_MAX;
+// int mn = INT_MAX;
 
 /*binPow , findPrimeFactors , printBinary , sortbysec*/
 //  ==============================================================================================
@@ -43,39 +41,34 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 &b){return (a.second < b.second);}
 //  ==============================================================================================
 
+
 void solve(){
-    int n;
-        cin >> n;
-        bool left = false , right = false , up = false , down = false;
-        int a , b;
-        while(n--){
-            cin >> a >> b;
-            if(a > 0) right = true;
-            else if(a < 0) left = true;
-
-            if(b > 0) up = true;
-            else if(b < 0) down = true;
-        }
-        int ans = 0;
-        if(left) ans++;
-        if(right) ans++;
-        if(up) ans++;
-        if(down) ans++;
-        
-        if(ans < 4) yes;
-        else no;
+    int n, m, res;
+    map <int , int> mp;
+	cin >> n >> m; res = m;
+    int a[n + 1] , b[n + 1];
+	for(int i = 1;i <= n; i++) cin >> a[i];
+	for(int i = 1;i <= n;i++){
+		cin >> b[i];
+		mp[b[i]] += a[i];
+	}
+	n--;
+    for(auto [x,y] : mp){
+		int k = min(y,n);
+        n -= k;
+		res += min(m,x)*k;
+	}
+	cout<<res<<'\n';
 }
-
-
-int main() {
+        
+int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); 
  
     int t = 1;
     cin >> t;
-    while (t--) {
+    while(t--){
         solve();
     }
-
     return 0;
 }
