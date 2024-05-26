@@ -1,18 +1,17 @@
 /*
- ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄    ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  
-▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ 
-▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌ ▐░▌  ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌
-▐░▌          ▐░▌       ▐░▌▐░▌▐░▌       ▐░▌     ▐░▌       ▐░▌
-▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░▌░▌        ▐░▌     ▐░█▄▄▄▄▄▄▄█░▌
-▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░▌         ▐░▌     ▐░░░░░░░░░░▌ 
- ▀▀▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌        ▐░▌     ▐░█▀▀▀▀▀▀▀█░▌
-          ▐░▌▐░▌       ▐░▌▐░▌▐░▌       ▐░▌     ▐░▌       ▐░▌
- ▄▄▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌▐░▌ ▐░▌  ▄▄▄▄█░█▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌
-▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ 
- ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀    ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀  
+                                    بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ
+                                    ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ
+                                    ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ
+                                    مَٰلِكِ يَوۡمِ ٱلدِّينِ
+                                    إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ
+                                    ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ
+                    صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ
 */
  
 #include<bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp> 
+#include <ext/pb_ds/tree_policy.hpp> 
+
 #define int long long int
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
@@ -21,12 +20,14 @@
 #define np cout << -1 << endl
 #define rn return
 #define cout(a) cout << a << endl
+#define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update> 
 using namespace std;
+using namespace __gnu_pbds; 
  
 int dx[]={0, 0, 1, -1, 1, 1, -1, -1};
 int dy[]={1, -1, 0, 0, 1, -1, 1, -1};
 int mx = INT_MIN;
-// int mn = INT_MAX;
+int mn = INT_MAX;
 
 /*binPow , findPrimeFactors , printBinary , sortbysec*/
 //  ==============================================================================================
@@ -41,33 +42,44 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 &b){return (a.second < b.second);}
 //  ==============================================================================================
 
-void solve(){
-    int n;
-    cin >> n;
-    map < int , int > m;
-    for(int i = 1; i <= n; i++){
-        int a;
-        cin >> a;
-        m[i] = a;
-    }
-    for(int i = 1; i <= n; i++){
-        int cnt = 1;
-        int temp = i;
-        int next = m[temp];
-        while(next != i){
-            temp = next;
-            next = m[temp];
-            cnt++;
-        }
-        cout << cnt << " ";
-    }
-    cout << endl;
-}
+#define MAX_VALUE 1000000
 
+
+void solve(){
+    int x;
+        cin >> x;
+        vector<int> a(32, 0);
+        int j = 0;
+
+        while (x > 0) {
+            if (x % 2 == 1) {
+                if (j == 0 || a[j-1] == 0) {
+                    a[j] = 1;
+                } else {
+                    a[j-1] = -1;
+                    x += 2; 
+                }
+            }
+            x /= 2;
+            j++;
+        }
+
+        int n = 0;
+        for (int i = 0; i < 32; ++i) {
+            if (a[i] != 0) n = i + 1;
+        }
+
+        cout << n << endl;
+        for (int i = 0; i < n; ++i) {
+            cout << a[i] << " ";
+        }
+        cout << endl;
+} 
+       
 int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); 
- 
+    
     int t = 1;
     cin >> t;
     while(t--){
@@ -75,3 +87,4 @@ int32_t main(){
     }
     return 0;
 }
+
