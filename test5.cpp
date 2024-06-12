@@ -43,28 +43,35 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 //  ==============================================================================================
 
 #define MAX_VALUE 1000000
-
+int cal(int x, int y, int z, int a, int b, int c){
+    if(a > x or b > y or c > z) return 0;
+    else return (x - a + 1) * (y - b + 1) * (z - c + 1);
+}
 
 void solve(){
-    int n;
-    cin >> n;
-    int ans = 1, preSum = 0;
-    for(int i = 1; i <= n; i++){
-        int sum = 0;
-        for(int j = 1; j <= n; j++){
-            int temp = i * j;
-            if(temp <= n){
-                sum += temp;
-            }else{
-                if(sum > preSum){
-                    preSum = sum;
-                    ans = i;
+    int x, y, z, k;
+    cin >> x >> y >> z >> k;
+    int cnt = 0;
+ 
+    for(int i = 1; i * i * i <= k ; i += 1){
+        if(k % i == 0){
+            int val = k / i;
+            for(int j = 1; j * j <= val; j += 1){
+                if(val % j == 0){
+                    int a = i, b = j, c = val / j;
+                    cnt = max(cnt, cal(x, y, z, a, b, c));
+                    cnt = max(cnt, cal(x, y, z, a, c, b));
+                    cnt = max(cnt, cal(x, y, z, b, a, c));
+                    cnt = max(cnt, cal(x, y, z, b, c, a));
+                    cnt = max(cnt, cal(x, y, z, c, a, b));
+                    cnt = max(cnt, cal(x, y, z, c, b, a));
                 }
-                break;
             }
         }
     }
-    cout << ans << endl;
+ 
+    cout << cnt << '\n';
+
 } 
        
 int32_t main(){

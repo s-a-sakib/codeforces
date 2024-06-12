@@ -46,25 +46,30 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 
 
 void solve(){
-    int n;
-    cin >> n;
-    int ans = 1, preSum = 0;
-    for(int i = 1; i <= n; i++){
-        int sum = 0;
-        for(int j = 1; j <= n; j++){
-            int temp = i * j;
-            if(temp <= n){
-                sum += temp;
-            }else{
-                if(sum > preSum){
-                    preSum = sum;
-                    ans = i;
+    int n, m;
+    cin >> n >> m;
+    int x = 0, y = 0, mx = 0;
+    for(int i = 0; i < n; i++){
+        string s;
+        cin >> s;
+        bool started = false;
+        int index, sum = 0;
+        for(int j = 0; j < m; j++){
+            if(s[j] == '#'){
+                if(!started){
+                    index = j + 1;
+                    started = true;
                 }
-                break;
+                sum++;
             }
         }
+        if(sum > mx){
+            mx = sum;
+            x = i + 1;
+            y = index + (sum / 2);
+        }
     }
-    cout << ans << endl;
+    cout << x <<" "<< y << endl;
 } 
        
 int32_t main(){
