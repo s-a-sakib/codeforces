@@ -48,23 +48,7 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 void solve(){
     int n;
     cin >> n;
-    int ans = 1, preSum = 0;
-    for(int i = 1; i <= n; i++){
-        int sum = 0;
-        for(int j = 1; j <= n; j++){
-            int temp = i * j;
-            if(temp <= n){
-                sum += temp;
-            }else{
-                if(sum > preSum){
-                    preSum = sum;
-                    ans = i;
-                }
-                break;
-            }
-        }
-    }
-    cout << ans << endl;
+    cout << n - 1 << endl;
 } 
        
 int32_t main(){
