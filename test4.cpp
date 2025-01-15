@@ -46,18 +46,33 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 
 
 void solve(){
-    int m, a, b, c;
-    cin >> m >> a >> b >> c;
-    int ans = 0;
-
-    ans += min(m,a);
-    int x = m - min(m,a);
-    ans += min(m,b);
-    int y = m - min(m,b);
-
-    ans += min(c, x + y);
-
-    cout << ans << endl;
+    int n;
+        cin>>n;
+        vector<int> a(n+1),b(n);
+        for(int i=0;i<n;i++)
+        {
+            int x;
+            cin>>x;
+            if(!a[x])
+            {
+                b[i]=x;
+                a[x]=1;
+            }
+        }
+        queue<int> q;
+        for(int i=1;i<=n;i++)
+            if(!a[i])
+                q.push(i);
+        for(int i=0;i<n;i++)
+        {
+            if(!b[i])
+            {
+                b[i]=q.front();
+                q.pop();
+            }
+        }
+        for(int i=0;i<n;i++)
+            cout<<b[i]<<" \n"[i==n-1];
 } 
        
 int32_t main(){
