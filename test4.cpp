@@ -46,20 +46,29 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 
 
 void solve(){
-    int n;
+    int n,cZero = 0;
     cin >> n;
     int a[n];
     for(int i = 0; i < n; i++){
         cin >> a[i];
+        if(a[i] == 0) cZero++;
     }
-
-    for(int i = 0; i < n - 1; i++){
-        if(2 * a[i] > a[i + 1] and 2 * a[i + 1] > a[i]){
-            yes;
-            return;
-        }
+    if(cZero == 0){
+        cout << 1 << endl;
+        rn;
+    }else if(cZero == n){
+        cout << 0 << endl;
+        rn;
     }
-    no;
+    if((a[0] == 0 or a[n-1] == 0) and cZero == 1){
+        cout << 1 << endl;
+        rn;
+    }
+    if((a[0] == 0 and a[n-1] == 0) and cZero == 2){
+        cout << 1 << endl;
+        rn;
+    }
+    cout << 2 << endl;
 } 
        
 int32_t main(){
@@ -73,4 +82,3 @@ int32_t main(){
     }
     return 0;
 }
-
