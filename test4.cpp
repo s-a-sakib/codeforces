@@ -46,18 +46,30 @@ binaryString = "0";}return binaryString;} bool sortbysec(const pair<int,int> &a,
 
 
 void solve(){
-    int a1, a2, a4, a5;
-    cin >> a1 >> a2 >> a4 >> a5;
-    int x = a1 + a2;
-    int y = a4 - a2;
-    int z = a5 - a4;
-
-    set <int> s;
-    s.insert(x);
-    s.insert(y);
-    s.insert(z);
-
-    cout << 4 - s.size() << endl;
+    ll n, m;
+    cin >> n >> m;
+    vector <vll> ve(n, vll(m));
+    vll p(n, -16);
+    bool val = true;
+    ll c = 0;
+    for (vll &we : ve) {
+        for (ll &i : we) cin >> i;
+        ll minN = *min_element(we.begin(), we.end());
+        if (minN < n) p[minN] = c++;
+        val &= minN < n;
+        sort(we.begin(), we.end());
+        ll last = we[0]-n;
+        for (ll i : we) {
+            val &= last+n == i;
+            last = i;
+        }
+    }
+    if (!val) {
+        cout << "-1\n";
+        return;
+    }
+    for (ll i : p) cout << i+1 << ' ';
+    cout << '\n';
 } 
        
 int32_t main(){
